@@ -1,0 +1,540 @@
+{
+  "name": "apps",
+  "type": "magicservice",
+  "namespace": "apps",
+  "organisation": "magicbutton",
+  "magicappversion": "v0.0.1",
+  "description": "A simple app to manage users, groups and memberships",
+  "baseattributes": {
+    "urlrecord": [
+      {
+        "name": "tenant",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false
+      },
+      {
+        "name": "url",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "record": [
+      {
+        "name": "tenant",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  "entities": {
+    "person": {
+      "name": "person",
+      "description": "person",
+      "baselineattributes": [
+        {
+          "name": "tenant",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "additionalattributes": [
+        {
+          "name": "unique_person_id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "displayname",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "message": {
+      "name": "message",
+      "description": "message",
+      "baselineattributes": [
+        {
+          "name": "tenant",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "additionalattributes": [
+        {
+          "name": "unique_message_id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "subject",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "body",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "receiver",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "read",
+          "type": "boolean",
+          "required": true
+        }
+      ]
+    }
+  },
+  "models": {
+    "itemMethods": [
+      {
+        "name": "read",
+        "description": "Read a single item",
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The id of the item",
+            "type": "int",
+            "required": true
+          }
+        ],
+        "returns": {
+          "type": "object"
+        }
+      },
+      {
+        "name": "create",
+        "description": "Create a new item",
+        "parameters": [
+          {
+            "name": "item",
+            "description": "The item to create",
+            "type": "object",
+            "required": true
+          }
+        ],
+        "returns": {
+          "type": "object"
+        }
+      },
+      {
+        "name": "update",
+        "description": "Update an existing item",
+        "parameters": [
+          {
+            "name": "item",
+            "description": "The item to update",
+            "type": "object",
+            "required": true
+          }
+        ],
+        "returns": {
+          "type": "object"
+        }
+      },
+      {
+        "name": "delete",
+        "description": "Delete an existing item",
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The id of the item",
+            "type": "int",
+            "required": true
+          }
+        ],
+        "returns": {
+          "type": "void"
+        }
+      },
+      {
+        "name": "search",
+        "description": "Search for items",
+        "parameters": [
+          {
+            "name": "query",
+            "description": "The search query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "returns": {
+          "type": "page"
+        }
+      }
+    ]
+  },
+  "services": [
+    {
+      "name": "person",
+      "description": "Manage persons",
+      "entity": {
+        "type": "record",
+        "model": "person",
+        "objectname": "Person",
+        "entity": {
+          "name": "person",
+          "description": "person",
+          "baselineattributes": [
+            {
+              "name": "tenant",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": false
+            }
+          ],
+          "additionalattributes": [
+            {
+              "name": "unique_person_id",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "displayname",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "email",
+              "type": "string",
+              "required": true
+            }
+          ]
+        }
+      },
+      "methods": [
+        {
+          "name": "read",
+          "description": "Read a single item",
+          "parameters": [
+            {
+              "name": "id",
+              "description": "The id of the item",
+              "type": "int",
+              "required": true
+            }
+          ],
+          "returns": {
+            "type": "object"
+          }
+        },
+        {
+          "name": "create",
+          "description": "Create a new item",
+          "parameters": [
+            {
+              "name": "item",
+              "description": "The item to create",
+              "type": "object",
+              "required": true
+            }
+          ],
+          "returns": {
+            "type": "object"
+          }
+        },
+        {
+          "name": "update",
+          "description": "Update an existing item",
+          "parameters": [
+            {
+              "name": "item",
+              "description": "The item to update",
+              "type": "object",
+              "required": true
+            }
+          ],
+          "returns": {
+            "type": "object"
+          }
+        },
+        {
+          "name": "delete",
+          "description": "Delete an existing item",
+          "parameters": [
+            {
+              "name": "id",
+              "description": "The id of the item",
+              "type": "int",
+              "required": true
+            }
+          ],
+          "returns": {
+            "type": "void"
+          }
+        },
+        {
+          "name": "search",
+          "description": "Search for items",
+          "parameters": [
+            {
+              "name": "query",
+              "description": "The search query",
+              "type": "string",
+              "required": true
+            }
+          ],
+          "returns": {
+            "type": "page"
+          }
+        }
+      ]
+    },
+    {
+      "name": "message",
+      "description": "Manage messages",
+      "entity": {
+        "type": "record",
+        "model": "message",
+        "objectname": "Message",
+        "entity": {
+          "name": "message",
+          "description": "message",
+          "baselineattributes": [
+            {
+              "name": "tenant",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": false
+            }
+          ],
+          "additionalattributes": [
+            {
+              "name": "unique_message_id",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "subject",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "body",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "sender",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "receiver",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "read",
+              "type": "boolean",
+              "required": true
+            }
+          ]
+        }
+      },
+      "methods": [
+        {
+          "name": "read",
+          "description": "Read a single item",
+          "parameters": [
+            {
+              "name": "id",
+              "description": "The id of the item",
+              "type": "int",
+              "required": true
+            }
+          ],
+          "returns": {
+            "type": "object"
+          }
+        },
+        {
+          "name": "create",
+          "description": "Create a new item",
+          "parameters": [
+            {
+              "name": "item",
+              "description": "The item to create",
+              "type": "object",
+              "required": true
+            }
+          ],
+          "returns": {
+            "type": "object"
+          }
+        },
+        {
+          "name": "update",
+          "description": "Update an existing item",
+          "parameters": [
+            {
+              "name": "item",
+              "description": "The item to update",
+              "type": "object",
+              "required": true
+            }
+          ],
+          "returns": {
+            "type": "object"
+          }
+        },
+        {
+          "name": "delete",
+          "description": "Delete an existing item",
+          "parameters": [
+            {
+              "name": "id",
+              "description": "The id of the item",
+              "type": "int",
+              "required": true
+            }
+          ],
+          "returns": {
+            "type": "void"
+          }
+        },
+        {
+          "name": "search",
+          "description": "Search for items",
+          "parameters": [
+            {
+              "name": "query",
+              "description": "The search query",
+              "type": "string",
+              "required": true
+            }
+          ],
+          "returns": {
+            "type": "page"
+          }
+        }
+      ]
+    }
+  ],
+  "icons": {
+    "ChevronLeft": {
+      "name": "ChevronLeft"
+    },
+    "ChevronRight": {
+      "name": "ChevronRight"
+    },
+    "Copy": {
+      "name": "Copy"
+    },
+    "CreditCard": {
+      "name": "CreditCard"
+    },
+    "File": {
+      "name": "File"
+    },
+    "Home": {
+      "name": "Home"
+    },
+    "LineChart": {
+      "name": "LineChart"
+    },
+    "ListFilter": {
+      "name": "ListFilter"
+    },
+    "MoreVertical": {
+      "name": "MoreVertical"
+    },
+    "Package": {
+      "name": "Package"
+    },
+    "Package2": {
+      "name": "Package2"
+    },
+    "PanelLeft": {
+      "name": "PanelLeft"
+    },
+    "Search": {
+      "name": "Search"
+    },
+    "Settings": {
+      "name": "Settings"
+    },
+    "ShoppingCart": {
+      "name": "ShoppingCart"
+    },
+    "Truck": {
+      "name": "Truck"
+    },
+    "Users2": {
+      "name": "Users2"
+    }
+  },
+  "components": null
+}

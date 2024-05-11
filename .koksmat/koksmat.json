@@ -1,0 +1,13 @@
+{
+  "version": {
+    "minor": 0,
+    "build": 12,
+    "patch": 12,
+    "major": 0
+  },
+  "appname": "magic-messages",
+  "dnsprod": "apps.intra.nexigroup.com",
+  "dnstest": "apps-test.intra.nexigroup.com",
+  "imagename": "ghcr.io/magicbutton/magic-messages",
+  "port": 4341
+}
