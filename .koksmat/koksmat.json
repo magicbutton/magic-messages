@@ -6,8 +6,8 @@
     "major": 0
   },
   "appname": "magic-messages",
-  "dnsprod": "apps.intra.nexigroup.com",
-  "dnstest": "apps-test.intra.nexigroup.com",
+  "dnsprod": "messages.intra.nexigroup.com",
+  "dnstest": "messages-test.intra.nexigroup.com",
   "imagename": "ghcr.io/magicbutton/magic-messages",
-  "port": 4341
+  "port": 4344
 }
